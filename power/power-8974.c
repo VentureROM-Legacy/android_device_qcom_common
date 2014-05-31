@@ -52,6 +52,7 @@ static int display_hint2_sent;
 static int first_display_off_hint;
 extern int display_boost;
 
+#ifdef CORE_CONTROL
 int set_interactive_override(struct power_module *module, int on)
 {
     char governor[80];
