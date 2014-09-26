@@ -264,18 +264,15 @@ static void power_hint(struct power_module *module, power_hint_t hint,
 
     switch(hint) {
         case POWER_HINT_VSYNC:
-        case POWER_HINT_INTERACTION:
-        break;
         case POWER_HINT_CPU_BOOST:
-#ifdef BOOST_HINT
+        break;
+        case POWER_HINT_INTERACTION:
         {
-            int duration = (int)data / 1000;
-            int resources[] = {0x702, 0x20B, 0x30B};
+            int resources[] = {0x702, 0x20F, 0x30F};
+            int duration = 3000;
 
-            if (duration > 0)
-                interaction(duration, sizeof(resources)/sizeof(resources[0]), resources);
+            interaction(duration, sizeof(resources)/sizeof(resources[0]), resources);
         }
-#endif
         break;
         case POWER_HINT_VIDEO_ENCODE:
             pthread_mutex_lock(&hint_mutex);
